@@ -6,6 +6,7 @@ import App from "./App";
 
 import "./styles/reset.css";
 import "./styles/global.css";
+import 'bootstrap/dist/css/bootstrap.css';
 
 ReactDOM.render(
   <BrowserRouter>
