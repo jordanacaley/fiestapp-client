@@ -5,8 +5,8 @@ import UserProvider from "./components/Auth/UserProvider";
 import App from "./App";
 
 import "./styles/reset.css";
-import "./styles/global.css";
 import 'bootstrap/dist/css/bootstrap.css';
+import "./styles/global.css";
 
 ReactDOM.render(
   <BrowserRouter>

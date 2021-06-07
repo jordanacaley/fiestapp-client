@@ -16,10 +16,19 @@ componentDidMount() {
 
 render() {
     return (
-        <div>
-          <h1>Entertainment</h1>
-            {this.state.services.map(service => <h2 key={service._id}>{service.name}</h2>)}
+      <div className="row row-cols-1 row-cols-md-6 g-4 p-2">
+        {this.state.services.map(service =>   
+        <div className="col" key={service._id}>      
+          <div className="card h-100 ml-1">
+            <img className="card-img-top" src={service.images[0]} alt={service.name} />
+            <div className="card-body">
+              <h5 className="card-title">{service.name}</h5>
+              <p className="card-text">{service.cityName}</p>
+            </div>
+          </div>
         </div>
+        )}
+    </div>
     );
   }
 }

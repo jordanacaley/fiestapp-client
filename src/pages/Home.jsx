@@ -1,8 +1,26 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Services from "../components/Services"
+import Services from "../components/Services";
+import MapApp from "../components/MapApp";
+import apiHandler from "../api/apiHandler"
 
 class Home extends React.Component {
+  state = {
+    selectedService: null,
+    services: [],
+  };
+
+  componentDidMount() {
+    apiHandler.getServices().then((data) => {
+      console.log(data)
+      this.setState({ services: data });
+    });
+  }
+
+  onSelectService = (selectedService) => {
+    this.setState({ selectedService: selectedService });
+  };
+
   render() {
     return (
       <div>
@@ -14,6 +32,7 @@ class Home extends React.Component {
           </p>
         </div>
         <Services />
+        <MapApp services={this.state.services} handleSelectService={this.onSelectService} />
       </div>
     );
   }
