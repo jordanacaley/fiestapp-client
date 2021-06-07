@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Services from "../components/Services";
 import MapApp from "../components/MapApp";
 import apiHandler from "../api/apiHandler"
 
@@ -12,12 +11,12 @@ class Home extends React.Component {
 
   componentDidMount() {
     apiHandler.getServices().then((data) => {
-      console.log(data)
       this.setState({ services: data });
     });
   }
 
   onSelectService = (selectedService) => {
+    console.log(selectedService)
     this.setState({ selectedService: selectedService });
   };
 
@@ -28,10 +27,9 @@ class Home extends React.Component {
           <h1 className="display-3 text-light font-weight-bold">FiestApp</h1>
           <p className="lead font-weight-bold ">The party starts here 💃</p>
           <p className="lead">
-            <Link to ="/all-services" className="btn btn-primary btn-lg font-weight-bold" type="button">Browse services</Link>
+            <Link to ="/all-services" className="btn btn-primary btn-lg font-weight-bold" type="button">Browse all services</Link>
           </p>
         </div>
-        <Services />
         <MapApp services={this.state.services} handleSelectService={this.onSelectService} />
       </div>
     );

@@ -50,6 +50,20 @@ const apiHandler = {
       .then((res) => res.data)
       .catch(errorHandler);
   },
+
+  getUserInfo() {
+    return service
+      .get("/api/dashboard")
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
+
+  getUserServices() {
+    return service
+      .get("/api/dashboard/services")
+      .then((res) => res.data)
+      .catch(errorHandler);
+  }
 };
 
 export default apiHandler;
