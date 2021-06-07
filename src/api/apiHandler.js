@@ -63,7 +63,22 @@ const apiHandler = {
       .get("/api/dashboard/services")
       .then((res) => res.data)
       .catch(errorHandler);
-  }
+  },
+
+  getOneService() {
+    return service
+      .get("/api/dashboard/services/:id")
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
+
+  // getVendor() {
+  //   return service
+  //     .get("api/vendors/:id")
+  //     .then((res) => res.data)
+  //     .catch(errorHandler);
+  // },
+
 };
 
 export default apiHandler;

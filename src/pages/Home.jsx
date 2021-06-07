@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import MapApp from "../components/MapApp";
-import apiHandler from "../api/apiHandler"
+import apiHandler from "../api/apiHandler";
+import ServiceDisplay from "../components/ServiceDisplay";
+import { withUser } from "../components/Auth/withUser";
 
 class Home extends React.Component {
   state = {
@@ -20,6 +22,10 @@ class Home extends React.Component {
     this.setState({ selectedService: selectedService });
   };
 
+  handleClose = () => {
+    this.setState({ selectedService: null });
+  };
+
   render() {
     return (
       <div>
@@ -30,10 +36,18 @@ class Home extends React.Component {
             <Link to ="/all-services" className="btn btn-primary btn-lg font-weight-bold" type="button">Browse all services</Link>
           </p>
         </div>
-        <MapApp services={this.state.services} handleSelectService={this.onSelectService} />
+        <React.Fragment>
+          {this.state.selectedService !== null && (
+            <ServiceDisplay
+              service={this.state.selectedService}
+              handleClose={this.handleClose}
+            />
+          )}
+          <MapApp services={this.state.services} handleSelectService={this.onSelectService} />
+        </React.Fragment>
       </div>
     );
   }
 }
 
-export default Home;
+export default withUser(Home);

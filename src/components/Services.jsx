@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from "axios";
+import { Link } from "react-router-dom"
 
 export default class Services extends Component {
 
@@ -24,6 +25,7 @@ render() {
                 <div className="card-body">
                   <h5 className="card-title">{service.name}</h5>
                   <p className="card-text">{service.cityName}</p>
+                  <Link to={`service/${service._id}`} className="btn btn-primary" type="button">Learn more</Link>
                 </div>
               </div>
             </div>
