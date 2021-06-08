@@ -72,6 +72,20 @@ const apiHandler = {
       .catch(errorHandler);
   },
 
+  deleteService(serviceId) {
+    return service
+      .delete("/api/services/" + serviceId)
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
+
+  addService(data) {
+    return service
+      .post("/api/services",data)
+      .then((res) => res.data)
+      .catch(errorHandler);
+  }
+
   // getVendor() {
   //   return service
   //     .get("api/vendors/:id")
