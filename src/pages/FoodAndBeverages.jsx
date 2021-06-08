@@ -17,9 +17,9 @@ componentDidMount() {
 
 render() {
     return (
-      <div>
+      <div className="m-3">
         <h1>Food & Beverages</h1>
-        <div className="row row-cols-1 row-cols-md-6 g-4 p-2">
+        <div className="row row-cols-1 row-cols-md-4 g-4 p-2">
           {this.state.services.map(service =>   
           <div className="col" key={service._id}>      
             <div className="card h-100 ml-1">
@@ -27,6 +27,7 @@ render() {
               <div className="card-body">
                 <h5 className="card-title">{service.name}</h5>
                 <p className="card-text">{service.cityName}</p>
+                <p className="card-text">${service.price} for {service.durationHrs} hours</p>
                 <Link to={`service/${service._id}`} className="btn btn-primary" type="button">Learn more</Link>
               </div>
             </div>

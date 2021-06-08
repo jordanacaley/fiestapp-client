@@ -81,9 +81,17 @@ const apiHandler = {
 
   addService(data) {
     return service
-      .post("/api/services",data)
+      .post("/api/services", data)
       .then((res) => res.data)
       .catch(errorHandler);
+  },
+
+  updateService(serviceId, data) {
+    return service
+      .patch(`/api/services/${serviceId}`, data)
+      .then((res) => res.data)
+      .catch(errorHandler);
+
   }
 
   // getVendor() {

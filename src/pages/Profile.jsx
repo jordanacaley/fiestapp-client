@@ -36,50 +36,53 @@ handleDelete = (serviceId) => {
 render() {
   if (!this.state.user) return null;
     return (
-      <div>
-        <h1>Welcome, {this.state.user.firstName}!</h1>
-        <h2>Your profile:</h2>
-        <div className="row row-cols-1 row-cols-md-6 g-4 p-2">
-            <div className="col">      
-              <div className="card h-100 ml-1">
-                <img className="card-img-top" src={this.state.user.profileImg} alt={this.state.user.firstName} />
-                <div className="card-body">
-                  <h5 className="card-title">{this.state.user.firstName} {this.state.user.lastName}</h5>
-                  <p className="card-text">Email: {this.state.user.email}</p>
-                  <p className="card-text">Phone: {this.state.user.phoneNumber}</p>
-                  <p className="card-text">Description: {this.state.user.description}</p>
-                  <button type="button" className="btn btn-warning mx-3">Edit Profile</button>
-                </div>
-              </div>
-            </div>
+      <div className="m-3">
+
+        <h1 className="text-center">Welcome, {this.state.user.firstName}!</h1>
+
+        <div className="card border-success mb-3 mx-auto mt-3 text-center" style={{maxWidth: "60rem"}}>
+          <div className="card-header">Your Profile</div>
+          <div className="card-body">
+            <h4 className="card-title">{this.state.user.firstName} {this.state.user.lastName}</h4>
+            <img className="mx-auto mb-2" src={this.state.user.profileImg} alt={this.state.user.firstName} style={{height: "150px", borderRadius: "20px"}} />
+            <p className="card-text">Email: {this.state.user.email}</p>
+            <p className="card-text">Phone: {this.state.user.phoneNumber}</p>
+            <p className="card-text">Description: {this.state.user.description}</p>
+            <button type="button" className="btn btn-success mx-3">Edit</button>
+          </div>
         </div>
-        <h2>Your services:</h2>
+
+
+        <h2 className="text-center">Your services:</h2>
           <React.Fragment>
             {!this.state.user.servicesOffered.length && (
-              <React.Fragment>
-                <div>
-                  <img src="decor.svg" style={{height: "100px"}} alt="" />
-                </div>
-                <p>You're not offering any services yet.</p>
-              </React.Fragment>
-            )}
-            <div className="row row-cols-1 row-cols-md-6 g-4 p-2">
-                {this.state.user.servicesOffered.map(service =>   
-                <div className="col" key={service._id}>      
-                  <div className="card h-100 ml-1">
-                    <img className="card-img-top" src={service.images[0]} alt={service.name} />
-                    <div className="card-body">
-                      <h5 className="card-title">{service.name}</h5>
-                      <p className="card-text">{service.cityName}</p>
-                      <button type="button" className="btn btn-warning mx-3">Edit</button>
-                      <button type="button" className="btn btn-danger" onClick={() => this.handleDelete(service._id)}>Delete</button>
-                    </div>
+
+                <div className="card border-info mb-3 mx-auto mt-3 text-center" style={{maxWidth: "60rem"}}>
+                  <div className="card-header">You are not currently offering any services</div>
+                  <div className="card-body">
+                    <img className="mx-auto mb-2" src="decor.svg" alt="Party hat" style={{height: "100px", borderRadius: "20px"}} />
                   </div>
                 </div>
+
+            )}
+                {this.state.user.servicesOffered.map(service =>   
+                <div key={service._id} className="card border-info mb-3 mx-auto mt-3 text-center" style={{maxWidth: "60rem"}}>
+                  <div className="card-header">{service.name}</div>
+                  <div className="card-body">
+                    <img className="mx-auto mb-2" src={service.images[0]} alt={service.name} style={{height: "200px", borderRadius: "20px"}} />
+                    <p className="card-text">City: {service.cityName}</p>
+                    <p className="card-text">Description: {service.description}</p>
+                    <Link to={`/service/edit/${service._id}`} className="btn btn-info mx-3" type="button">Edit</Link>
+                    <button type="button" className="btn btn-danger" onClick={() => this.handleDelete(service._id)}>Delete</button>
+                  </div>
+                </div>
+
                 )}
-            </div>
           </React.Fragment> 
-        <Link to={"/service/create"} className="btn btn-primary" type="button">Add a service</Link>
+
+          <div className="text-center">
+            <Link to={"/service/create"} className="btn btn-primary btn-lg" type="button">Add a service</Link>
+          </div>
       </div>
     );
   }

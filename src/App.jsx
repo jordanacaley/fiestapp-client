@@ -17,7 +17,8 @@ import Costumes from "./pages/Costumes";
 import Services from "./components/Services";
 import VendorDisplay from "./pages/VendorDisplay";
 import OneService from "./pages/OneService";
-import FormAddService from "./components/Forms/FormAddService"
+import FormAddService from "./components/Forms/FormAddService";
+import FormEditService from "./components/Forms/FormEditService";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
         <ProtectedRoute exact path="/profile" component={Profile} />
         <Route exact path="/vendor/:id" component={VendorDisplay} />
         <Route exact path="/service/create" component={FormAddService}/>
+        <Route exact path="/service/edit/:id" component={FormEditService}/>
         <Route exact path="/service/:id" component={OneService} />
       </Switch>
     </div>

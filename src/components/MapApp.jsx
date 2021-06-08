@@ -10,7 +10,7 @@ class AppMap extends React.PureComponent {
   state = {
     lng: -92.92511, // Default lng and lat set to the center of Villahermosa.
     lat: 17.976122,
-    zoom: 8, // used for map zoom level
+    zoom: 11, // used for map zoom level
   };
 
   handleClick = (selectedService) => {
@@ -100,7 +100,7 @@ class AppMap extends React.PureComponent {
       <Map
         // eslint-disable-next-line
         style="mapbox://styles/mapbox/light-v10"
-        zoom={[8]}
+        zoom={[11]}
         containerStyle={{
           height: "500px",
         }}

@@ -17,7 +17,7 @@ componentDidMount() {
 
 render() {
     return (
-      <div>
+      <div className="m-3">
         <h1>Costumes</h1>
         <div className="row row-cols-1 row-cols-md-6 g-4 p-2">
           {this.state.services.map(service =>   

@@ -25,6 +25,7 @@ render() {
                 <div className="card-body">
                   <h5 className="card-title">{service.name}</h5>
                   <p className="card-text">{service.cityName}</p>
+                  <p className="card-text">${service.price} for {service.durationsHrs} hours</p>
                   <Link to={`service/${service._id}`} className="btn btn-primary" type="button">Learn more</Link>
                 </div>
               </div>
