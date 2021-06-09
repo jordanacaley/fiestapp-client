@@ -72,6 +72,7 @@ render() {
                     <img className="mx-auto mb-2" src={service.images[0]} alt={service.name} style={{height: "200px", borderRadius: "20px"}} />
                     <p className="card-text">City: {service.cityName}</p>
                     <p className="card-text">Description: {service.description}</p>
+                    <p className="card-text">${service.price} for {service.durationHrs} hours</p>
                     <Link to={`/service/edit/${service._id}`} className="btn btn-info mx-3" type="button">Edit</Link>
                     <button type="button" className="btn btn-danger" onClick={() => this.handleDelete(service._id)}>Delete</button>
                   </div>

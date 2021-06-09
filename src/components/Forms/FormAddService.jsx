@@ -41,13 +41,14 @@ class ServiceForm extends Component {
 
     // eg:
     if (!this.state.category) {
-      this.setState({ error: "No category selected !" }, () => {
+      this.setState({ error: "Please select a category" }, () => {
         this.timeoutId = setTimeout(() => {
           this.setState({ error: null });
         }, 1000);
       });
       return;
     }
+    
 
     const fd = new FormData();
     const { httpResponse, ...data } = this.state;
@@ -221,7 +222,6 @@ class ServiceForm extends Component {
           <div className="form-group">
             <label>Upload images</label>
             <input ref={this.imageRef} type="file" name="images" multiple />
-        
           </div>
 
           {error && <FeedBack message={error} status="failure" />}

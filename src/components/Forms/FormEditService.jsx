@@ -19,6 +19,7 @@ class ServiceEditForm extends Component {
     location: {
       coordinates: [],
     },
+    images: [],
     // httpResponse: null,
   }
 
@@ -27,7 +28,7 @@ class ServiceEditForm extends Component {
       .getOneService(this.props.match.params.id)
       .then((data) => {
         console.log(data)
-        this.setState({ service: data, name: data.name, description: data.description, category: data.category, durationHrs: data.durationHrs, price: data.price, cityName: data.cityName, location: data.location });
+        this.setState({ service: data, name: data.name, description: data.description, category: data.category, durationHrs: data.durationHrs, price: data.price, cityName: data.cityName, location: data.location, images: data.images });
       })
       .catch((error) => {
         console.log(error);
@@ -49,7 +50,11 @@ class ServiceEditForm extends Component {
     buildFormData(fd, service); // You can find this function in ./src/utils.js
     // Function implemented by user "Vladi Vlad" @stackoverflow : ) => https://stackoverflow.com/a/42241875/13374041
 
-    //fd.append("images", this.imageRef.current.files);
+
+    [...this.imageRef.current.files].forEach((file) => {
+      return fd.append("images", file)
+    }) 
+
     apiHandler
       .updateService(this.props.match.params.id, fd)
       .then((data) => {
@@ -77,10 +82,6 @@ class ServiceEditForm extends Component {
       });
 
       this.props.history.push('/profile')
-  };
-
-  handleFileSelect = ({ tmpUrl, files }) => {
-    this.setState({ images: files });
   };
 
   handlePlace = (place) => {
@@ -202,8 +203,7 @@ class ServiceEditForm extends Component {
 
           <div className="form-group">
             <label>Upload images</label>
-            <input ref={this.imageRef} onFileSelect={this.handleFileSelect} type="file" name="images" multiple />
-        
+            <input ref={this.imageRef} type="file" name="images" multiple  />
           </div>
 
           <button>Edit Service</button>
