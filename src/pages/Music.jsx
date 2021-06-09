@@ -9,7 +9,7 @@ export default class Music extends Component {
 }
 
 componentDidMount() {
-    axios.get("http://localhost:6001/api/services/music")
+    axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/services/music`)
     .then(response => {
         this.setState({services: response.data})
     })

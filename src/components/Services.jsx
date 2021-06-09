@@ -9,7 +9,7 @@ export default class Services extends Component {
 }
 
 componentDidMount() {
-    axios.get("http://localhost:6001/api/services")
+    axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/services`)
     .then(response => {
         this.setState({services: response.data})
     })

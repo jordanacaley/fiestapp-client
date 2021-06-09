@@ -203,7 +203,7 @@ class ServiceEditForm extends Component {
 
           <div className="form-group">
             <label>Upload images</label>
-            <input ref={this.imageRef} type="file" name="images" multiple  />
+            <input ref={this.imageRef} type="file" name="images" multiple />
           </div>
 
           <button>Edit Service</button>

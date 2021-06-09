@@ -9,7 +9,7 @@ export default class DecorationsAndFavors extends Component {
 }
 
 componentDidMount() {
-    axios.get("http://localhost:6001/api/services/decorations-and-favors")
+    axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/services/decorations-and-favors`)
     .then(response => {
         this.setState({services: response.data})
     })

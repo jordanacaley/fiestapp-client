@@ -9,7 +9,7 @@ export default class FoodAndBeverages extends Component {
 }
 
 componentDidMount() {
-    axios.get("http://localhost:6001/api/services/food-and-beverages")
+    axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/services/food-and-beverages`)
     .then(response => {
         this.setState({services: response.data})
     })

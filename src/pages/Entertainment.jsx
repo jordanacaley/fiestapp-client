@@ -9,7 +9,7 @@ export default class Entertainment extends Component {
 }
 
 componentDidMount() {
-    axios.get("http://localhost:6001/api/services/entertainment")
+    axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/services/entertainment`)
     .then(response => {
         this.setState({services: response.data})
     })

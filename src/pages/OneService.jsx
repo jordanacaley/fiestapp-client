@@ -12,7 +12,7 @@ export default class OneService extends Component {
     const serviceId = this.props.match.params.id;
 
     axios
-    .get("http://localhost:6001/api/services/" + serviceId)
+    .get(`${process.env.REACT_APP_BACKEND_URL}/api/services/` + serviceId)
     .then(response => {
       this.setState({service: response.data})
     })

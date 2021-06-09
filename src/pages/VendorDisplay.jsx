@@ -14,14 +14,14 @@ export default class VendorDisplay extends Component {
 
     const promises = Promise.all([
       axios
-        .get("http://localhost:6001/api/vendors/" + vendorId)
+        .get(`${process.env.REACT_APP_BACKEND_URL}/api/vendors/` + vendorId)
         .then((res) => res.data)
         .catch((error) => {
           console.log(error);
         }),
 
         axios
-        .get("http://localhost:6001/api/services/vendor/" + vendorId)
+        .get(`${process.env.REACT_APP_BACKEND_URL}/api/services/vendor/` + vendorId)
         .then((res) => res.data)
         .catch((error) => {
           console.log(error);

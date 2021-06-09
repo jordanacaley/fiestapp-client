@@ -5,8 +5,8 @@ import { Link } from "react-router-dom"
 const ServiceDisplay = ({ service, handleClose }) => {
   return (
     <div className="Item-container">
-      <p onClick={handleClose} className="close-link">
-        Close
+      <p onClick={handleClose} className="close-link" style={{color: "black"}}>
+        X
       </p>
       <div className="round-image">
         <img className="user-img" src={service.images[0]} alt="service" />

@@ -9,18 +9,36 @@ class Profile extends Component {
     user: null,
   }
 
+// componentDidMount() {
+//   apiHandler
+//     .getUserInfo().then((data) => {
+//     this.props.context.setUser(data);
+//     this.setState({ user: data })
+//     console.log(this.state.user.servicesOffered)
+//   });
+// }
+
 componentDidMount() {
-  apiHandler.getUserInfo().then((data) => {
-    console.log(data)
-    this.setState({ user: data });
+  apiHandler
+    .getUserInfo().then((data) => {
+    this.props.context.setUser(data);
+    this.setState({ user: data })
+    console.log(this.state.user.servicesOffered)
   });
 }
 
+// apiHandler
+//       .signup(this.state)
+//       .then((data) => {
+//         this.props.context.setUser(data);
+//       })
+//       .catch((error) => {
+//         console.log(error);
+//       });
+
 handleDelete = (serviceId) => {
-  console.log(serviceId)
   apiHandler.deleteService(serviceId)
     .then((response) => {
-      console.log(response);
       this.setState({ user: {
         ...this.state.user,
         servicesOffered :  this.state.user.servicesOffered.filter((service) => {

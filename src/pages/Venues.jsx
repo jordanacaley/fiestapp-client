@@ -9,7 +9,7 @@ export default class Venues extends Component {
 }
 
 componentDidMount() {
-    axios.get("http://localhost:6001/api/services/venues")
+    axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/services/venues`)
     .then(response => {
         this.setState({services: response.data})
     })

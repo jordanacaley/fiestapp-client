@@ -9,7 +9,7 @@ export default class Furniture extends Component {
 }
 
 componentDidMount() {
-    axios.get("http://localhost:6001/api/services/furniture")
+    axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/services/furniture`)
     .then(response => {
         this.setState({services: response.data})
     })
