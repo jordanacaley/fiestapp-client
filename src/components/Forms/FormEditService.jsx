@@ -85,127 +85,75 @@ class ServiceEditForm extends Component {
     } 
 
     return (
-      <div className="ItemForm-container">
-        <form 
-          className="ItemForm" 
-          onSubmit={this.handleSubmit}
-        >
-          <h2>Edit Service</h2>
-          {/* {httpResponse && (
-            <FeedBack
-              message={httpResponse.message}
-              status={httpResponse.status}
-            />
-          )} */}
-          <div className="form-group">
-            <label className="label" htmlFor="name">
-              Name
-            </label>
-            <input
-              className="input"
-              type="text"
-              placeholder="What service do you offer?"
-              name="name"
-              onChange={this.handleChange}
-              value={this.state.name || ""}
-            />
-          </div>
-          <div className="form-group">
-            <label className="label" htmlFor="category">
-              Category
-            </label>
-            <select
-              name="category"
-              id="category"
-              onChange={this.handleChange}
-              value={this.state.category || ""}
-            >
-              <option value="" disabled>
-                Select a category
-              </option>
-              <option value="Venue">Venue</option>
-              <option value="Food & Beverage">Food & Beverage</option>
-              <option value="Music">Music</option>
-              <option value="Entertainment">Entertainment</option>
-              <option value="Decorations & Favors">Decorations & Favors</option>
-              <option value="Furniture">Furniture</option>
-              <option value="Costumes">Costumes</option>
-            </select>
-          </div>
-          <div className="form-group">
-            <label className="label" htmlFor="durationHrs">
-              Duration (hours)
-            </label>
-            <input
-              value={this.state.durationHrs || ""}
-              onChange={this.handleChange}
-              className="input"
-              type="number"
-              name="durationHrs"
-            />
-          </div>
-          <div className="form-group">
-            <label className="label" htmlFor="price">
-              Price $
-            </label>
-            <input
-              value={this.state.price || ""}
-              onChange={this.handleChange}
-              className="input"
-              type="number"
-              name="price"
-            />
-          </div>
-          <div className="form-group">
-            <label className="label" htmlFor="cityName">
-              City Name
-            </label>
-            <input
-              className="input"
-              type="text"
-              placeholder="Your city"
-              name="cityName"
-              onChange={this.handleChange}
-              value={this.state.cityName || ""}
-            />
-          </div>
-          <div className="form-group">
-            <label className="label" htmlFor="location">
-              Street Address
-            </label>
-            <AutoComplete onSelect={this.handlePlace} />
-          </div>
-          <div className="form-group">
-            <label className="label" htmlFor="description">
-              Description
-            </label>
-            <textarea
-              value={this.state.description || ""}
-              onChange={this.handleChange}
-              name="description"
-              id="description"
-              className="text-area"
-              placeholder="Please provide details about your service"
-            ></textarea>
-          </div>
-          
-          <div>
-            <p>Your current images:</p>
-            <div className="d-flex mb-2">
-              {this.state.images.map(image => 
-                <img src={image} alt="" className="mx-1 rounded" style={{height: "100px"}} />
-              )}
-            </div>
+
+      <div className="m-3">
+      <h1 className="w-75 mx-auto mb-0">Edit service</h1>
+      <form onSubmit={this.handleSubmit} className="w-75 mx-auto" >
+
+      <div className="form-group">
+          <label htmlFor="name" className="form-label mt-4">Name</label>
+          <input onChange={this.handleChange} value={this.state.name || ""} type="text" id="name" className="form-control" name="name" placeholder="What service do you offer?"/>
+        </div>
+
+        <div class="form-group">
+          <label htmlFor="category" class="form-label mt-4">Category</label>
+          <select className="form-select" id="category" name="category" onChange={this.handleChange} value={this.state.category || ""}>
+            <option value="" disabled>Select a category</option>
+            <option value="Venue">Venue</option>
+            <option value="Food & Beverage">Food & Beverage</option>
+            <option value="Music">Music</option>
+            <option value="Decorations & Favors">Decorations & Favors</option>
+            <option value="Furniture">Furniture</option>
+            <option value="Costumes">Costumes</option>
+          </select>
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="durationHrs" className="form-label mt-4">Duration (hours)</label>
+          <input onChange={this.handleChange} value={this.state.durationHrs || ""} type="number" id="durationHrs" className="form-control" name="durationHrs" />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="price" className="form-label mt-4">Price (USD)</label>
+          <input onChange={this.handleChange} value={this.state.price || ""} type="number" id="price" className="form-control" name="price" />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="cityName" className="form-label mt-4">City Name</label>
+          <input onChange={this.handleChange} value={this.state.cityName || ""} type="text" id="cityName" className="form-control" name="cityName" placeholder="Your city name"/>
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="location" className="form-label mt-4">Street Address</label>
+          <AutoComplete onSelect={this.handlePlace} />
+        </div>
+
+        <div className="form-group">
+            <label htmlFor="description" className="form-label mt-4">Description</label>
+            <input onChange={this.handleChange} value={this.state.description || ""} type="text" id="description" className="form-control" name="description" placeholder="Tell potential customers about your service" />
           </div>
 
-           <div className="form-group">
-            <label>Upload more images</label>
+          <div className="form-group">
+            <label className="form-label mt-4">Your current images</label>
+              <div className="d-flex mb-2">
+                {this.state.images.map(image => 
+                  <img src={image} alt="" className="mx-1 rounded" style={{height: "100px"}} />
+                )}
+              </div>
+          </div>
+
+        <div className="mt-3">
+          <label className="mb-1">Upload more images</label>
+          <div>
             <input ref={this.imageRef} type="file" name="images" multiple />
           </div>
+        </div>
 
-          <button>Edit Service</button>
-        </form>
-      </div>
+          <button type="submit" className="btn btn-primary mt-3">Update service</button>
+      </form>
+    </div>          
+
+
     );
   }
 }

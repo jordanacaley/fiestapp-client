@@ -70,7 +70,7 @@ class AutocompletePlace extends Component {
     return (
       <div className="AutocompletePlace">
         <input
-          className="input"
+          className="form-control"
           type="text"
           value={this.props.defaultValue || this.state.search}
           onChange={this.handleSearchChange}

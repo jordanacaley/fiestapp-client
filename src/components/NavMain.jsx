@@ -21,7 +21,7 @@ const NavMain = (props) => {
 
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
-        <NavLink className="navbar-brand" exact to="/">FiestApp</NavLink>
+        <NavLink className="navbar-brand" exact to="/"><img src="/decor.svg" alt="FiestApp" style={{height: "50px"}} /></NavLink>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
