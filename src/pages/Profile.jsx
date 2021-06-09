@@ -20,21 +20,14 @@ class Profile extends Component {
 
 componentDidMount() {
   apiHandler
-    .getUserInfo().then((data) => {
-    this.props.context.setUser(data);
-    this.setState({ user: data })
-    console.log(this.state.user.servicesOffered)
+    .getUserInfo()
+    .then((data) => {
+      this.props.context.setUser(data);
+      this.setState({ user: data })
+      console.log(this.state.user.servicesOffered)
   });
 }
 
-// apiHandler
-//       .signup(this.state)
-//       .then((data) => {
-//         this.props.context.setUser(data);
-//       })
-//       .catch((error) => {
-//         console.log(error);
-//       });
 
 handleDelete = (serviceId) => {
   apiHandler.deleteService(serviceId)

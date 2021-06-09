@@ -19,7 +19,7 @@ class ServiceEditForm extends Component {
     location: {
       coordinates: [],
     },
-    images: [],
+    images: "",
     // httpResponse: null,
   }
 
@@ -27,7 +27,6 @@ class ServiceEditForm extends Component {
     apiHandler
       .getOneService(this.props.match.params.id)
       .then((data) => {
-        console.log(data)
         this.setState({ service: data, name: data.name, description: data.description, category: data.category, durationHrs: data.durationHrs, price: data.price, cityName: data.cityName, location: data.location, images: data.images });
       })
       .catch((error) => {
@@ -59,29 +58,18 @@ class ServiceEditForm extends Component {
       .updateService(this.props.match.params.id, fd)
       .then((data) => {
         // this.props.onServiceUpdate(data);
-        this.setState({
-          httpResponse: {
-            status: "success",
-            message: "Service successfully added.",
-          },
-        });
-        this.timeoutId = setTimeout(() => {
-          this.setState({ httpResponse: null });
-        }, 1000);
+        this.props.history.push('/profile') 
       })
       .catch((error) => {
+        console.log(error)
         this.setState({
           httpResponse: {
             status: "failure",
             message: "An error occured, try again later.",
           },
-        });
-        this.timeoutId = setTimeout(() => {
-          this.setState({ httpResponse: null });
-        }, 1000);
+        });        
       });
 
-      this.props.history.push('/profile')
   };
 
   handlePlace = (place) => {
@@ -200,9 +188,18 @@ class ServiceEditForm extends Component {
               placeholder="Please provide details about your service"
             ></textarea>
           </div>
+          
+          <div>
+            <p>Your current images:</p>
+            <div className="d-flex mb-2">
+              {this.state.images.map(image => 
+                <img src={image} alt="" className="mx-1 rounded" style={{height: "100px"}} />
+              )}
+            </div>
+          </div>
 
-          <div className="form-group">
-            <label>Upload images</label>
+           <div className="form-group">
+            <label>Upload more images</label>
             <input ref={this.imageRef} type="file" name="images" multiple />
           </div>
 

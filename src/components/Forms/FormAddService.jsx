@@ -61,53 +61,22 @@ class ServiceForm extends Component {
       return fd.append("images", file)
     }) 
 
-
     apiHandler
       .addService(fd)
       .then((data) => {
-        this.props.addService(data);
-        this.setState({
-          name: "",
-          description: "",
-          category: "",
-          durationHrs: 0,
-          price: 0,
-          cityName: "",
-          location: {
-            coordinates: [],
-          },
-          httpResponse: {
-            status: "success",
-            message: "Item successfully added.",
-          },
-        });
-
-        // this.setState({
-        //   ...initialState,
-        //   httpResponse: {
-        //     status: "success",
-        //     message: "Item successfully added.",
-        //   },
-        // });
-
-        this.timeoutId = setTimeout(() => {
-          this.setState({ httpResponse: null });
-        }, 1000);
+        // this.props.onServiceUpdate(data);
+        this.props.history.push('/profile') 
       })
       .catch((error) => {
+        console.log(error)
         this.setState({
           httpResponse: {
             status: "failure",
             message: "An error occured, try again later.",
           },
-        });
-
-        this.timeoutId = setTimeout(() => {
-          this.setState({ httpResponse: null });
-        }, 1000);
+        });        
       });
 
-      this.props.history.push('/profile')
   };
 
   handlePlace = (place) => {
