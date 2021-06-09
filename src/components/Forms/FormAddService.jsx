@@ -13,6 +13,7 @@ const initialState = {
   category: "",
   durationHrs: 0,
   price: 0,
+  cityName: "",
   location: {
     coordinates: [],
   },
@@ -64,28 +65,29 @@ class ServiceForm extends Component {
       .addService(fd)
       .then((data) => {
         this.props.addService(data);
-        // this.setState({
-        //   name: "",
-        //   category: "",
-        //   quantity: "",
-        //   location: {
-        //     coordinates: [],
-        //   },
-        //   address: "",
-        //   description: "",
-        //   httpResponse: {
-        //     status: "success",
-        //     message: "Item successfully added.",
-        //   },
-        // });
-
         this.setState({
-          ...initialState,
+          name: "",
+          description: "",
+          category: "",
+          durationHrs: 0,
+          price: 0,
+          cityName: "",
+          location: {
+            coordinates: [],
+          },
           httpResponse: {
             status: "success",
             message: "Item successfully added.",
           },
         });
+
+        // this.setState({
+        //   ...initialState,
+        //   httpResponse: {
+        //     status: "success",
+        //     message: "Item successfully added.",
+        //   },
+        // });
 
         this.timeoutId = setTimeout(() => {
           this.setState({ httpResponse: null });
@@ -103,6 +105,8 @@ class ServiceForm extends Component {
           this.setState({ httpResponse: null });
         }, 1000);
       });
+
+      this.props.history.push('/profile')
   };
 
   handlePlace = (place) => {
@@ -182,8 +186,21 @@ class ServiceForm extends Component {
             />
           </div>
           <div className="form-group">
+            <label className="label" htmlFor="cityName">
+              City Name
+            </label>
+            <input
+              className="input"
+              type="text"
+              onChange={this.handleChange}
+              value={this.state.cityName}
+              placeholder="Your city"
+              name="cityName"
+            />
+          </div>
+          <div className="form-group">
             <label className="label" htmlFor="location">
-              Address
+              Street Address
             </label>
             <AutoComplete onSelect={this.handlePlace} />
           </div>

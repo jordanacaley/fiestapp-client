@@ -65,9 +65,9 @@ const apiHandler = {
       .catch(errorHandler);
   },
 
-  getOneService() {
+  getOneService(serviceId) {
     return service
-      .get("/api/dashboard/services/:id")
+      .get(`/api/services/${serviceId}`)
       .then((res) => res.data)
       .catch(errorHandler);
   },

@@ -9,10 +9,30 @@ import FeedBack from "./../Feedback";
 
 class ServiceEditForm extends Component {
   state = {
-    httpResponse: null,
+    service: null,
+    name: "",
+    description: "",
+    category: "",
+    durationHrs: 0,
+    price: 0,
+    cityName: "",
+    location: {
+      coordinates: [],
+    },
+    // httpResponse: null,
   }
 
-  formRef = React.createRef();
+  componentDidMount() {
+    apiHandler
+      .getOneService(this.props.match.params.id)
+      .then((data) => {
+        console.log(data)
+        this.setState({ service: data, name: data.name, description: data.description, category: data.category, durationHrs: data.durationHrs, price: data.price, cityName: data.cityName, location: data.location });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 
   imageRef = React.createRef();
 
@@ -25,8 +45,8 @@ class ServiceEditForm extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     const fd = new FormData();
-    const { httpResponse, ...data } = this.state;
-    buildFormData(fd, data); // You can find this function in ./src/utils.js
+    const { httpResponse, ...service } = this.state;
+    buildFormData(fd, service); // You can find this function in ./src/utils.js
     // Function implemented by user "Vladi Vlad" @stackoverflow : ) => https://stackoverflow.com/a/42241875/13374041
 
     //fd.append("images", this.imageRef.current.files);
@@ -55,6 +75,8 @@ class ServiceEditForm extends Component {
           this.setState({ httpResponse: null });
         }, 1000);
       });
+
+      this.props.history.push('/profile')
   };
 
   handleFileSelect = ({ tmpUrl, files }) => {
@@ -66,24 +88,26 @@ class ServiceEditForm extends Component {
   };
 
   render() {
-    const { httpResponse } = this.state;
 
-    const { name, category, description, location, durationHrs, price } = this.props.match.params.id;
+    if(!this.state.service) {
+      return (
+        <div>Loading...</div>
+      )
+    } 
 
     return (
       <div className="ItemForm-container">
         <form 
-          ref={this.formRef}
           className="ItemForm" 
           onSubmit={this.handleSubmit}
         >
           <h2>Edit Service</h2>
-          {httpResponse && (
+          {/* {httpResponse && (
             <FeedBack
               message={httpResponse.message}
               status={httpResponse.status}
             />
-          )}
+          )} */}
           <div className="form-group">
             <label className="label" htmlFor="name">
               Name
@@ -94,7 +118,7 @@ class ServiceEditForm extends Component {
               placeholder="What service do you offer?"
               name="name"
               onChange={this.handleChange}
-              value={name || ""}
+              value={this.state.name || ""}
             />
           </div>
           <div className="form-group">
@@ -105,7 +129,7 @@ class ServiceEditForm extends Component {
               name="category"
               id="category"
               onChange={this.handleChange}
-              value={category || ""}
+              value={this.state.category || ""}
             >
               <option value="" disabled>
                 Select a category
@@ -124,7 +148,7 @@ class ServiceEditForm extends Component {
               Duration (hours)
             </label>
             <input
-              value={durationHrs || ""}
+              value={this.state.durationHrs || ""}
               onChange={this.handleChange}
               className="input"
               type="number"
@@ -133,10 +157,10 @@ class ServiceEditForm extends Component {
           </div>
           <div className="form-group">
             <label className="label" htmlFor="price">
-              Price
+              Price $
             </label>
             <input
-              value={price || ""}
+              value={this.state.price || ""}
               onChange={this.handleChange}
               className="input"
               type="number"
@@ -144,8 +168,21 @@ class ServiceEditForm extends Component {
             />
           </div>
           <div className="form-group">
+            <label className="label" htmlFor="cityName">
+              City Name
+            </label>
+            <input
+              className="input"
+              type="text"
+              placeholder="Your city"
+              name="cityName"
+              onChange={this.handleChange}
+              value={this.state.cityName || ""}
+            />
+          </div>
+          <div className="form-group">
             <label className="label" htmlFor="location">
-              Address
+              Street Address
             </label>
             <AutoComplete onSelect={this.handlePlace} />
           </div>
@@ -154,7 +191,7 @@ class ServiceEditForm extends Component {
               Description
             </label>
             <textarea
-              value={description || ""}
+              value={this.state.description || ""}
               onChange={this.handleChange}
               name="description"
               id="description"

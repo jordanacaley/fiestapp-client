@@ -19,7 +19,7 @@ render() {
     return (
       <div className="m-3">
         <h1>Venues</h1>
-        <div className="row row-cols-1 row-cols-md-6 g-4 p-2">
+        <div className="row row-cols-1 row-cols-md-4 g-4 p-2">
           {this.state.services.map(service =>   
           <div className="col" key={service._id}>      
             <div className="card h-100 ml-1">
