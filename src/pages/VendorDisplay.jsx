@@ -47,8 +47,8 @@ export default class VendorDisplay extends Component {
     return (
       <div className="row row-cols-1 row-cols-md-1 g-4 p-2" >
         <div className="col" key={this.state.vendor._id}>
-          <div className="card h-100 mx-auto" style={{maxWidth: "60rem"}}>
-            <img className="card-img-top" src={this.state.vendor.profileImg} alt={this.state.vendor.firstName} style={{height: "400px"}}/>
+          <div className="card h-100 mx-auto" style={{maxWidth: "30rem"}}>
+            <img className="card-img-top" src={this.state.vendor.profileImg} alt={this.state.vendor.firstName} style={{height: "500px"}}/>
             <div className="card-body">
               <h5 className="card-title">{this.state.vendor.firstName}</h5>
               <p className="card-text">{this.state.vendor.description}</p>
