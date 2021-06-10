@@ -20,8 +20,8 @@ const ServiceDisplay = ({ service, handleClose }) => {
 
 
     <div className="Item-container text-white bg-info mb-3">
-      <p onClick={handleClose} className="close-link mb-0" style={{color: "black"}}>
-        X
+      <p onClick={handleClose} className="close-link mb-0 btn btn-warning btn-sm col-2" type="button">
+        Close
       </p>
       <div className="round-image">
         <img className="user-img" src={service.images[0]} alt="service" />
