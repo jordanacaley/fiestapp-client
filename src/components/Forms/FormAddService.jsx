@@ -81,7 +81,7 @@ class ServiceForm extends Component {
   };
 
   render() {
-    const { httpResponse, error } = this.state;
+    // const { httpResponse, error } = this.state;
 
     return (
       <div className="m-3">

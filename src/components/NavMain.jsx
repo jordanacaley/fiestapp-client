@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, withRouter } from "react-router-dom";
 import { withUser } from "../components/Auth/withUser";
 import apiHandler from "../api/apiHandler";
 
@@ -11,6 +11,7 @@ const NavMain = (props) => {
       .logout()
       .then(() => {
         context.removeUser();
+        props.history.push('/')         
       })
       .catch((error) => {
         console.log(error);
@@ -18,6 +19,7 @@ const NavMain = (props) => {
   }
 
   return (
+
 
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
@@ -62,4 +64,4 @@ const NavMain = (props) => {
   );
 };
 
-export default withUser(NavMain);
+export default withRouter(withUser(NavMain));

@@ -3,7 +3,7 @@ import AutoComplete from "./../Autocomplete";
 import { withUser } from "../Auth/withUser";
 import apiHandler from "../../api/apiHandler";
 import { buildFormData } from "../../utils";
-import FeedBack from "./../Feedback";
+// import FeedBack from "./../Feedback";
 // import "../../styles/ItemForm.css";
 
 
@@ -76,6 +76,7 @@ class ServiceEditForm extends Component {
     this.setState({ location: place.geometry });
   };
 
+
   render() {
 
     if(!this.state.service) {
@@ -137,7 +138,10 @@ class ServiceEditForm extends Component {
             <label className="form-label mt-4">Your current images</label>
               <div className="d-flex mb-2">
                 {this.state.images.map(image => 
+                <div>
+                  <p className="mb-0">X</p>
                   <img src={image} alt="" className="mx-1 rounded" style={{height: "100px"}} />
+                </div>
                 )}
               </div>
           </div>

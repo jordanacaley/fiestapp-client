@@ -11,7 +11,6 @@ class FormSignup extends Component {
     lastName: "",
     phoneNumber: "",
     description: "",
-    profileImg: "",
   };
 
   imageRef = React.createRef();
@@ -26,8 +25,16 @@ class FormSignup extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
+    const fd = new FormData();
+    
+    for (let key in this.state) {
+      fd.append(key, this.state[key])
+    }
+
+    fd.append("profileImg", this.imageRef.current.files[0]);
+
     apiHandler
-      .signup(this.state)
+      .signup(fd)
       .then((data) => {
         this.props.context.setUser(data);
       })
