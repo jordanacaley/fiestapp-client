@@ -34,7 +34,7 @@ export default class OneService extends Component {
           return (
               <div className="col">
                 <div className="card">
-                  <img src={image} className="card-img-top" alt="" />
+                  <img src={image} className="card-img-top" alt="" style={{height: "450px"}} />
                 </div>
               </div>
           )

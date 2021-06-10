@@ -8,6 +8,7 @@ const NavCategories = () => {
      <div className="container-fluid">
       <div className="collapse navbar-collapse" id="navbarColor01">
         <ul className="navbar-nav me-auto">
+          <div className="d-flex justify-content-evenly"></div>
           <li className="nav-item">
             <NavLink className="nav-link" activeClassName="nav-link active" to ="/venue">Venues</NavLink>
           </li>
@@ -26,9 +27,9 @@ const NavCategories = () => {
           <li className="nav-item">
             <NavLink className="nav-link" activeClassName="nav-link active" to ="/furniture">Furniture</NavLink>
           </li>
-          <li className="nav-item">
+          {/* <li className="nav-item">
             <NavLink className="nav-link" activeClassName="nav-link active" to ="/costumes">Costumes</NavLink>
-          </li>
+          </li> */}
         </ul>
       </div>
      </div>

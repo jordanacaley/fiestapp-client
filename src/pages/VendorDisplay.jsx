@@ -45,32 +45,36 @@ export default class VendorDisplay extends Component {
     if (!this.state.vendor) return null;
 
     return (
-      <div className="row row-cols-1 row-cols-md-1 g-4 p-2">
+      <div className="row row-cols-1 row-cols-md-1 g-4 p-2" >
         <div className="col" key={this.state.vendor._id}>
-          <div className="card h-100 ml-1">
-            <img className="card-img-top" src={this.state.vendor.profileImg} alt={this.state.vendor.firstName} />
+          <div className="card h-100 mx-auto" style={{maxWidth: "60rem"}}>
+            <img className="card-img-top" src={this.state.vendor.profileImg} alt={this.state.vendor.firstName} style={{height: "400px"}}/>
             <div className="card-body">
               <h5 className="card-title">{this.state.vendor.firstName}</h5>
               <p className="card-text">{this.state.vendor.description}</p>
             </div>
           </div>
         </div>
-        <h2>Services offered by {this.state.vendor.firstName}:</h2>
-        {this.state.vendorServices.map(service =>   
-          <div className="col" key={service._id}>      
-          <div className="card h-100 ml-1">
-            <img className="card-img-top" src={service.images[0]} alt={service.name} />
-            <div className="card-body">
-              <h5 className="card-title">{service.name}</h5>
-              <p className="card-text">{service.cityName}</p>
-              <Link to={`/service/${service._id}`} className="btn btn-primary" type="button">Learn more</Link>
+
+        <div className="m-3">
+          <h2>Services offered by {this.state.vendor.firstName}:</h2>
+          <div className="row row-cols-1 row-cols-md-4 g-4 p-2">
+          {this.state.vendorServices.map(service =>   
+            <div className="col" key={service._id}>      
+            <div className="card h-100 ml-1">
+              <img className="card-img-top" src={service.images[0]} alt={service.name} />
+              <div className="card-body">
+                <h5 className="card-title">{service.name}</h5>
+                <p className="card-text">{service.cityName}</p>
+                <Link to={`/service/${service._id}`} className="btn btn-primary" type="button">Learn more</Link>
+              </div>
             </div>
           </div>
+            )}
         </div>
-          )}
+        </div>
         
       </div>
     );
   }
 }
-

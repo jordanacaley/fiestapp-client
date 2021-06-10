@@ -30,11 +30,14 @@ class Home extends React.Component {
     return (
       <div>
         <div className="jumbotron text-light hero-image d-flex flex-column justify-content-center p-4">
-          <h1 className="display-3 text-light font-weight-bold">FiestApp</h1>
-          <p className="lead font-weight-bold ">The party starts here 💃</p>
-          <p className="lead">
-            <Link to ="/all-services" className="btn btn-primary btn-lg font-weight-bold" type="button">Browse all services</Link>
-          </p>
+          <div className="p-2 rounded text-center" style={{width: "350px", backgroundColor: "rgba(57, 203, 251, 0.7)"}}>
+            <h1 className="display-3 text-light font-weight-bold">FiestApp</h1>
+            <p className="lead font-weight-bold ">The party starts here 💃</p>
+            <p className="lead">
+              <Link to ="/all-services" className="btn btn-primary btn-lg font-weight-bold" type="button">Browse all services</Link>
+            </p>
+
+          </div>
         </div>
         <React.Fragment>
           {this.state.selectedService !== null && (

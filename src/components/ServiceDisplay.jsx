@@ -5,20 +5,6 @@ import { Link } from "react-router-dom"
 const ServiceDisplay = ({ service, handleClose }) => {
   return (
 
-    // <div class="card text-white bg-info mb-3" style="max-width: 20rem;">
-    //   <div class="card-header">
-    //     <p onClick={handleClose} className="close-link" style={{color: "black"}}>X</p>
-    //   </div>
-    //   <div class="card-body">
-    //     <h4 class="card-title">{service.name}</h4>
-    //     <img src={service.images[0]} alt={service.name} style={{height: "50px"}} />
-    //     <p class="card-text">{service.category}</p>
-    //     <p class="card-text">{service.cityName}</p>
-    //     <Link to={`service/${service._id}`} className="btn btn-primary" type="button">Learn more</Link>
-    //   </div>
-    // </div>
-
-
     <div className="Item-container text-white bg-info mb-3">
       <p onClick={handleClose} className="close-link mb-0 btn btn-warning btn-sm col-2" type="button">
         Close
