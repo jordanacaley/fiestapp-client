@@ -93,14 +93,14 @@ const apiHandler = {
       .then((res) => res.data)
       .catch(errorHandler);
 
-  }
+  },
 
-  // getVendor() {
-  //   return service
-  //     .get("api/vendors/:id")
-  //     .then((res) => res.data)
-  //     .catch(errorHandler);
-  // },
+  deleteImage(serviceId, image) {
+    return service
+      .delete(`/api/services/${serviceId}/img`, { params: { image: image } })
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
 
 };
 

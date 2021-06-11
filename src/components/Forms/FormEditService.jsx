@@ -36,6 +36,17 @@ class ServiceEditForm extends Component {
 
   imageRef = React.createRef();
 
+  handleDelete = (serviceId, image) => {
+    apiHandler.deleteImage(serviceId, image)
+      .then((response) => {
+        this.setState({ images: this.state.images.filter(item => 
+          item !== image) });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   handleChange = (event) => {
     const value = event.target.type === "file" ? event.target.files : event.target.value;
     const key = event.target.name;
@@ -75,6 +86,9 @@ class ServiceEditForm extends Component {
   handlePlace = (place) => {
     this.setState({ location: place.geometry });
   };
+
+
+  
 
 
   render() {
@@ -139,7 +153,7 @@ class ServiceEditForm extends Component {
               <div className="d-flex mb-2">
                 {this.state.images.map(image => 
                 <div>
-                  <p className="mb-0">X</p>
+                  <p className="mb-0" onClick={() => this.handleDelete(this.state.service._id, image)}>X</p>
                   <img src={image} alt="" className="mx-1 rounded" style={{height: "100px"}} />
                 </div>
                 )}
